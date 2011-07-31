@@ -22,32 +22,33 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
-import org.jboss.shrinkwrap.resolver.impl.maven.MavenRepositorySettings;
-
-import com.acme.multinode.grid.CacheProducer;
+import org.jboss.shrinkwrap.resolver.impl.maven.MavenSettingsBuilder;
 
 /**
  * Deployments
- *
+ * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class Deployments
-{
-   {
-      System.setProperty(MavenRepositorySettings.ALT_USER_SETTINGS_XML_LOCATION, "grid/jboss-repositories.xml");
-   }
-   
-   public static WebArchive createActiveClient() 
-   {
-      return ShrinkWrap.create(WebArchive.class)
-            .addPackage(CacheProducer.class.getPackage())
-            .addClass(TestUtils.class)
-            .addAsLibraries(
-                  DependencyResolvers.use(MavenDependencyResolver.class)
-                              .artifact("org.infinispan:infinispan-core:4.2.1.FINAL").resolveAsFiles())
-            .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-            .addAsResource("grid/infinispan.xml", "infinispan.xml")
-            .setWebXML("grid/in-container-web.xml");
-   }
+public class Deployments {
+	{
+		System.setProperty(MavenSettingsBuilder.ALT_USER_SETTINGS_XML_LOCATION,
+				"grid/jboss-repositories.xml");
+	}
+
+	public static WebArchive createActiveClient() {
+		return ShrinkWrap
+				.create(WebArchive.class)
+				.addPackage(CacheProducer.class.getPackage())
+				.addClass(TestUtils.class)
+				.addAsLibraries(
+						DependencyResolvers
+								.use(MavenDependencyResolver.class)
+								.artifact(
+										"org.infinispan:infinispan-core:4.2.1.FINAL")
+								.resolveAsFiles())
+				.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+				.addAsResource("grid/infinispan.xml", "infinispan.xml")
+				.setWebXML("grid/in-container-web.xml");
+	}
 }

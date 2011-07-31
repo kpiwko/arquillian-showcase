@@ -33,14 +33,18 @@
             <artifactId>infinispan-server-hotrod</artifactId>
             <version>4.2.1.FINAL</version>
         </dependency>
-        
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jboss.arquillian</groupId>
-            <artifactId>arquillian-junit</artifactId>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
         </dependency>
     </dependencies>
 
@@ -66,12 +70,9 @@
             <id>arq-jbossas-remote-7</id>
             <dependencies>
                 <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-jbossas-remote-7</artifactId>
-                </dependency>
-                <dependency>
                     <groupId>org.jboss.as</groupId>
-                    <artifactId>jboss-as-controller-client</artifactId>
+                    <artifactId>jboss-as-arquillian-container-remote</artifactId>
+                    <scope>test</scope>
                 </dependency>
             </dependencies>
             <build>
